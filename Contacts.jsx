@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as ContactsExpo from 'expo-contacts'
 import * as SMS from 'expo-sms'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]) // List from user's device
@@ -24,7 +24,7 @@ const Contacts = () => {
           (contact) => contact.firstName === 'Duran'
         )
 
-        setSelected(alejandro[0].phoneNumbers[0].number)
+        setSelected(alejandro[0])
 
         setContacts(data)
       }
@@ -38,21 +38,48 @@ const Contacts = () => {
   useEffect(() => {
     if (selected) {
       const sendSMS = async () => {
-        const isAvailable = await SMS.isAvailableAsync()
-        console.log(isAvailable)
+        try {
+          const isAvailable = await SMS.isAvailableAsync()
+          console.log(isAvailable)
 
-        if (isAvailable) {
-          const { result } = await SMS.sendSMSAsync([selected], 'Que pedos')
-          console.log(result)
-        } else {
-          console.log('Unable to send sms')
+          // alejandro[0].phoneNumbers[0].number
+          // alejandro[0]
+
+          if (isAvailable) {
+            const { result } = await SMS.sendSMSAsync(
+              [selected.phoneNumbers[0].number],
+              `Hello, ${selected.name}, I'm reaching out because I'd like to add you as my referral for X - Job. You may receive a call from this number.`
+            )
+            console.log(result)
+          } else {
+            console.log('Unable to send sms')
+          }
+        } catch (error) {
+          console.log(error)
         }
       }
-      sendSMS()
+      // sendSMS()
     }
   }, [selected])
 
   // Send sms draft function
+  const handleSendSMS = async () => {
+    try {
+      const isAvailable = await SMS.isAvailableAsync()
+
+      if (isAvailable) {
+        const { result } = await SMS.sendSMSAsync(
+          [selected.phoneNumbers[0].number],
+          `Hello, ${selected.name}, I'm reaching out because I'd like to add you as my referral for X - Job. You may receive a call from this number.`
+        )
+        console.log(result)
+      } else {
+        console.log('Unable to send sms')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   // Handle add to selected list
   const handleAdd = (contact) => setSelected((prev) => [...prev, contact])
@@ -63,7 +90,11 @@ const Contacts = () => {
     setSelected(filtered)
   }
 
-  return <View></View>
+  return (
+    <View>
+      <Text>Select Contact</Text>
+    </View>
+  )
 }
 
 export default Contacts
