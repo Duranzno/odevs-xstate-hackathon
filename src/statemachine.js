@@ -2,6 +2,7 @@ import { createMachine, assign, sendParent } from "xstate";
 
 export const createTodoMachine = ({ id, title, completed }) =>
   machine;
+  //** Message https://stately.ai/registry/editor/56f1034b-d743-4833-9eb3-47af444f9c8b?machineId=d197bd6a-c522-4797-a3d9-8b57a94a00ba */
   export const machine=createMachine(
     {
       id: "todo",
