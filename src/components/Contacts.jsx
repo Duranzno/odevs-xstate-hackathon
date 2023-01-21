@@ -4,10 +4,12 @@ import * as ContactsExpo from 'expo-contacts'
 import * as SMS from 'expo-sms'
 import * as MailComposer from 'expo-mail-composer'
 import { View, ScrollView } from 'react-native'
+import ContactItem from './ContactItem'
 import { List } from 'react-native-paper'
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]) // List from user's device
+  const [recruiter, setRecruiter] = useState({})
   const [selected, setSelected] = useState([])
 
   // Get contacts on load
@@ -24,29 +26,47 @@ const Contacts = () => {
   useEffect(() => {
     console.log(selected)
   }, [selected])
+  useEffect(() => {
+    console.log(recruiter)
+  }, [recruiter])
 
   // Handle add to selected list
   const handleSelect = (contact) => setSelected((prev) => [...prev, contact])
+  const handleSelectRecruiter = (contact) => setRecruiter(contact)
 
   const [expanded, setExpanded] = React.useState(true)
 
   const handlePress = () => setExpanded(!expanded)
   const onSelectContact = (c) => console.log(c)
 
-  const accordionItems =
+  const accordionRecruiter =
     contacts.length > 0 &&
     contacts.map((contact, index) => {
-      const phoneNumbers = contact.phoneNumbers
-
-      const description = `Phone Number: ${phoneNumbers && phoneNumbers[0].number
-        }`
       return (
-        <List.Item
-          onPress={() => handleSelect(contact)}
+        <ContactItem
           key={index}
-          title={contact.name}
-          description={description}
-          left={(props) => <List.Icon {...props} icon='equal' />}
+          contact={contact}
+          handlePress={handleSelectRecruiter}
+        />
+      )
+    })
+
+  const accordionReferences =
+    contacts.length > 0 &&
+    contacts.map((contact, index) => {
+      return (
+        <ContactItem key={index} contact={contact} handlePress={handleSelect} />
+      )
+    })
+
+  const accordionSelected =
+    selected.length > 0 &&
+    selected.map((contact, index) => {
+      return (
+        <ContactItem
+          key={index}
+          contact={contact}
+          handlePress={() => alert('Hi')}
         />
       )
     })
@@ -56,9 +76,18 @@ const Contacts = () => {
       <List.Section title='Contacts List'>
         <ScrollView>
           <List.Accordion title='Select Recruiter'>
-            {accordionItems}
+            {accordionRecruiter}
+          </List.Accordion>
+          <List.Accordion title='Select Your References'>
+            {accordionReferences}
           </List.Accordion>
         </ScrollView>
+      </List.Section>
+
+      <List.Section title='Selected'>
+        <List.Accordion title='Your References'>
+          {accordionSelected}
+        </List.Accordion>
       </List.Section>
     </View>
   )
