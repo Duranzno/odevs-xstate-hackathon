@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { useActor } from '@xstate/react'
 import { List } from 'react-native-paper'
-
-const ContactItem = (contact) => {
-  const [state, send] = useActor()
-  const inputRef = useRef(null)
+import { Contact } from 'expo-contacts'
+const ContactItem: React.FC<{
+  onPress: Function
+  contact: Contact
+  ref?: any
+}> = ({ contact, onPress }) => {
+  // const [state, send] = useActor()
+  // const inputRef = useRef(null)
 
   // useEffect(() => {
   //   if (state.actions.find((action) => action.type === 'focusInput')) {
@@ -14,8 +18,8 @@ const ContactItem = (contact) => {
 
   return (
     <List.Item
-      // onPress={() => send(contact.contact)}
-      title={contact.contact.name}
+      onPress={() => onPress()}
+      title={contact?.name}
       left={(props) => <List.Icon {...props} icon='equal' />}
     />
   )
