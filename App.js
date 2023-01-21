@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
 import Contacts from './Contacts'
+import { Provider as PaperProvider } from 'react-native-paper';
+import {MyComponent} from './MyComponent'
 export default function App() {
+  
   return (
-    <View style={styles.container}>
-      <Contacts />
-      <StatusBar style='auto' />
-    </View>
+    <PaperProvider>
+      <Provider>
+      {/* <StatusBar style='auto' /> */}
+      </Provider>
+    </PaperProvider>
   )
 }
 

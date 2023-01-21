@@ -132,10 +132,26 @@ const Contacts = () => {
     const filtered = selected.filter((contact) => contact.id !== id)
     setSelected(filtered)
   }
+  const [expanded, setExpanded] = React.useState(true);
 
+  const handlePress = () => setExpanded(!expanded);
+  const onSelectContact = (c) => console.log(c)
   return (
     <View>
-      <Text>Select Contact</Text>
+      {contacts.length &&
+        <List.Accordion
+          title="Select"
+          // left={props => <List.Icon {...props} icon="folder" />}
+          expanded={expanded}
+          onPress={handlePress}>
+          {/* {
+            contacts.map((c) =>
+              <List.Item title="Name" onPress={onSelectContact} />
+            )
+          } */}
+          {/* <List.Item title="Second item" /> */}
+        </List.Accordion>
+      }
     </View>
   )
 }
