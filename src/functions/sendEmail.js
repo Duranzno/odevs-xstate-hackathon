@@ -10,9 +10,9 @@ const generateList = (contacts) => {
   let list = ''
 
   for (let i = 0; i < contacts.length; i++) {
-    const contactString = `Name: ${contacts[i].name} \n Phone Number: ${contacts[i].phoneNumbers[0].number
-      } \n Email: ${contacts[i].email || ''}\n Title: ${contacts[i].title
-      } \n Company: ${contacts[i].company || ''}`
+    const contactString = `Name: ${contacts[i].contact.name} \n Phone Number: ${contacts[i].contact.phoneNumbers[0].number
+      } \n Email: ${contacts[i].contact.email || ''}\n Title: ${contacts[i].contact.title
+      } \n Company: ${contacts[i].contact.company || ''}`
 
     list += '\n' + contactString + '\n'
   }
@@ -30,22 +30,19 @@ const generateList = (contacts) => {
  */
 export const sendEmail = async (recruiter, selectedContacts) => {
   try {
-    const list = generateList(selectedContacts)
-    const message = `Hello ${recruiter.name}, I'm sending the list of referrals with their respective info: ${list}`
+    // const list = generateList(selectedContacts)
+    //const message = `Hello ${recruiter.name}, I'm sending the list of referrals with their respective info: ${list}`
 
-    if (!recruiter.email) {
-      sendSMS(message, recruiter.phoneNumber)
-    } else {
-      const isAvailable = await MailComposer.isAvailableAsync()
 
-      if (isAvailable) {
-        const email = await MailComposer.composeAsync({
-          body: message,
-          recipients: `${recruiter.email || ''}`,
-          subject: 'Referrals'
-        })
-        console.log(email)
-      }
+    const isAvailable = await MailComposer.isAvailableAsync()
+
+    if (isAvailable) {
+      const email = await MailComposer.composeAsync({
+        body: "Referrals",
+        recipients: `${recruiter.email || ''}`,
+        subject: 'Referrals'
+      })
+      console.log(email)
     }
   } catch (error) {
     console.log(error)

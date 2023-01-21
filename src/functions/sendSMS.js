@@ -20,3 +20,6 @@ export const sendSMS = async (message, phoneNumber) => {
     console.log(error)
   }
 }
+
+
+export const prepareMSG = (receiver) => `Hello, ${receiver.name}, I'm reaching out because I'd like to add you as my referral for a Job. You may receive a call from a recruiter`
