@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as ContactsExpo from 'expo-contacts'
 import * as SMS from 'expo-sms'
+import * as MailComposer from 'expo-mail-composer'
 import { View, Text } from 'react-native'
 
 const Contacts = () => {
@@ -59,6 +60,28 @@ const Contacts = () => {
         }
       }
       // sendSMS()
+
+      const sendEmail = async () => {
+        try {
+          const isAvailable = await MailComposer.isAvailableAsync()
+
+          if (isAvailable) {
+            const email = await MailComposer.composeAsync({
+              body: `Hello {recruiter}, I'm sending the list of referrals with their respective info: [List]`,
+              recipients: `Aledurax@gmail.com`,
+              subject: 'Referrals'
+            })
+
+            console.log(email)
+          } else {
+            console.log('Error')
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
+      // sendEmail()
     }
   }, [selected])
 
@@ -75,6 +98,26 @@ const Contacts = () => {
         console.log(result)
       } else {
         console.log('Unable to send sms')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSendEmail = async () => {
+    try {
+      const isAvailable = await MailComposer.isAvailableAsync()
+
+      if (isAvailable) {
+        const email = await MailComposer.composeAsync({
+          body: `Hello {recruiter}, I'm sending the list of referrals with their respective info: [List]`,
+          recipients: `Aledurax@gmail.com`,
+          subject: 'Referrals'
+        })
+
+        console.log(email)
+      } else {
+        console.log('Error')
       }
     } catch (error) {
       console.log(error)
