@@ -12,6 +12,8 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.20.13",
     "@expo/ngrok": "^4.1.0",
+    "@xstate/inspect": "^0.7.0",
+    "@xstate/react": "^3.0.2",
     "expo": "~47.0.12",
     "expo-contacts": "^11.0.1",
     "expo-sms": "~11.0.0",
@@ -23,12 +25,13 @@
     "react-native-svg": "13.4.0",
     "expo-mail-composer": "~12.0.0",
     "react-native-vector-icons": "^9.2.0",
+    "uuid-v4": "^0.1.0",
     "xstate": "^4.35.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@expo/ngrok": "^4.1.0"
-
+    "@types/react": "~18.0.24",
+    "@types/react-native": "~0.70.6",
+    "typescript": "^4.6.3"
   },
   "private": true
 }

@@ -1,8 +1,5 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
-import Contacts from './Contacts'
 import { Provider as PaperProvider } from 'react-native-paper'
-import { MyComponent } from './MyComponent'
+import Contacts from './src/components/Contacts'
 export default function App() {
   return (
     <PaperProvider>
@@ -10,12 +7,3 @@ export default function App() {
     </PaperProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})

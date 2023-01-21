@@ -10,11 +10,9 @@ const generateList = (contacts) => {
   let list = ''
 
   for (let i = 0; i < contacts.length; i++) {
-    const contactString = `Name: ${contacts[i].name} \n Phone Number: ${
-      contacts[i].phoneNumbers[0].number
-    } \n Email: ${contacts[i].email || ''}\n Title: ${
-      contacts[i].title
-    } \n Company: ${contacts[i].company || ''}`
+    const contactString = `Name: ${contacts[i].name} \n Phone Number: ${contacts[i].phoneNumbers[0].number
+      } \n Email: ${contacts[i].email || ''}\n Title: ${contacts[i].title
+      } \n Company: ${contacts[i].company || ''}`
 
     list += '\n' + contactString + '\n'
   }

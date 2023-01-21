@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getContacts } from './getContacts'
+import { getContacts } from '../functions/getContacts'
 import * as ContactsExpo from 'expo-contacts'
 import * as SMS from 'expo-sms'
 import * as MailComposer from 'expo-mail-composer'
@@ -38,9 +38,8 @@ const Contacts = () => {
     contacts.map((contact, index) => {
       const phoneNumbers = contact.phoneNumbers
 
-      const description = `Phone Number: ${
-        phoneNumbers && phoneNumbers[0].number
-      }`
+      const description = `Phone Number: ${phoneNumbers && phoneNumbers[0].number
+        }`
       return (
         <List.Item
           onPress={() => handleSelect(contact)}
