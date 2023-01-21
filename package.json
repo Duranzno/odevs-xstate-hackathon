@@ -15,7 +15,8 @@
     "react": "18.1.0",
     "react-native": "0.70.5",
     "xstate": "^4.35.2",
-    "react-native-svg": "13.4.0"
+    "react-native-svg": "13.4.0",
+    "expo-sms": "~11.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
