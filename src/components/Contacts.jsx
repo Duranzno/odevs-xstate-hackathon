@@ -42,33 +42,19 @@ const Contacts = () => {
   const accordionRecruiter =
     contacts.length > 0 &&
     contacts.map((contact, index) => {
-      return (
-        <ContactItem
-          key={index}
-          contact={contact}
-          handlePress={handleSelectRecruiter}
-        />
-      )
+      return <ContactItem key={index} contact={contact} />
     })
 
   const accordionReferences =
     contacts.length > 0 &&
     contacts.map((contact, index) => {
-      return (
-        <ContactItem key={index} contact={contact} handlePress={handleSelect} />
-      )
+      return <ContactItem key={index} contact={contact} />
     })
 
   const accordionSelected =
     selected.length > 0 &&
     selected.map((contact, index) => {
-      return (
-        <ContactItem
-          key={index}
-          contact={contact}
-          handlePress={() => alert('Hi')}
-        />
-      )
+      return <ContactItem key={index} contact={contact} />
     })
 
   return (
