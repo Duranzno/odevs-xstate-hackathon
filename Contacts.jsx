@@ -1,19 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as ContactsExpo from 'expo-contacts'
-import {
-  Input,
-  IconButton,
-  Checkbox,
-  Box,
-  VStack,
-  HStack,
-  Heading,
-  Icon,
-  Center,
-  useToast,
-  NativeBaseProvider
-} from 'native-base'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]) // List from user's device
