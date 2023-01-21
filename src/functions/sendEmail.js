@@ -30,15 +30,15 @@ const generateList = (contacts) => {
  */
 export const sendEmail = async (recruiter, selectedContacts) => {
   try {
-    // const list = generateList(selectedContacts)
-    //const message = `Hello ${recruiter.name}, I'm sending the list of referrals with their respective info: ${list}`
+    const list = generateList(selectedContacts)
+    const message = `Hello ${recruiter.name}, I'm sending the list of referrals with their respective info: ${list}`
 
 
     const isAvailable = await MailComposer.isAvailableAsync()
 
     if (isAvailable) {
       const email = await MailComposer.composeAsync({
-        body: "Referrals",
+        body: message,
         recipients: `${recruiter.email || ''}`,
         subject: 'Referrals'
       })
