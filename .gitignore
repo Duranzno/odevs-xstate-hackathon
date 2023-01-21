@@ -9,6 +9,6 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-
+xstate-todomvc-forked
 # macOS
 .DS_Store
