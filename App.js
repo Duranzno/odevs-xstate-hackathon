@@ -1,9 +1,10 @@
-import { Provider as PaperProvider } from 'react-native-paper'
-import Contacts from './src/components/Contacts'
+import { Provider as PaperProvider } from 'react-native-paper';
+import { InternalApp } from './src/InternalApp';
+
 export default function App() {
   return (
     <PaperProvider>
-      <Contacts />
+      <InternalApp />
     </PaperProvider>
   )
 }
