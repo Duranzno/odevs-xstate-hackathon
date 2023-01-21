@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { getContacts } from '../functions/getContacts'
-import * as ContactsExpo from 'expo-contacts'
-import * as SMS from 'expo-sms'
-import * as MailComposer from 'expo-mail-composer'
 import { View, ScrollView } from 'react-native'
 import ContactItem from './ContactItem'
 import { List } from 'react-native-paper'
@@ -23,21 +20,8 @@ const Contacts = () => {
     return
   }, [])
 
-  useEffect(() => {
-    console.log(selected)
-  }, [selected])
-  useEffect(() => {
-    console.log(recruiter)
-  }, [recruiter])
-
   // Handle add to selected list
-  const handleSelect = (contact) => setSelected((prev) => [...prev, contact])
-  const handleSelectRecruiter = (contact) => setRecruiter(contact)
-
   const [expanded, setExpanded] = React.useState(true)
-
-  const handlePress = () => setExpanded(!expanded)
-  const onSelectContact = (c) => console.log(c)
 
   const accordionRecruiter =
     contacts.length > 0 &&
@@ -54,7 +38,7 @@ const Contacts = () => {
   const accordionSelected =
     selected.length > 0 &&
     selected.map((contact, index) => {
-      return <ContactItem key={index} contact={contact} />
+      return <ContactSelected key={index} contact={contact} />
     })
 
   return (
